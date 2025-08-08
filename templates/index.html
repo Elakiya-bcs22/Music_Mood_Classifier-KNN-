@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Mood Classifier</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #191414; /* Spotify dark background */
+            font-family: 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+        }
+
+        h2 {
+            color: #1DB954; /* Spotify Green */
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #282828; /* Dark card */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #000;
+            width: 320px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #121212;
+            color: white;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #1DB954;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1ed760;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #1DB954;
+        }
+
+        /* Music doodle icon in bottom right */
+        .music-doodle {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🎧 Music Mood Classifier</h2>
+
+    <form method="POST" action="/predict">
+        Tempo: <input type="number" name="tempo" step="0.1"><br>
+        BPM: <input type="number" name="bpm" step="0.1"><br>
+        Energy (0-1): <input type="number" name="energy" step="0.1"><br>
+        Loudness (dB): <input type="number" name="loudness" step="0.1"><br>
+        Key:
+        <select name="key">
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+        </select><br>
+        <input type="submit" value="Predict">
+    </form>
+
+    <h3>{{ prediction_text }}</h3>
+
+    <!-- Optional doodle icon (bottom-right) -->
+    <img class="music-doodle" src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Music Doodle">
+
+</body>
+</html>
+
+
